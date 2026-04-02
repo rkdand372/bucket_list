@@ -54,6 +54,10 @@ class _HomePageState extends State<HomePage> {
                     bucket.job,
                     style: TextStyle(
                       fontSize: 24,
+                      color: bucket.isDone ? Colors.grey : Colors.black,
+                      decoration: bucket.isDone
+                          ? TextDecoration.lineThrough
+                          : TextDecoration.none,
                     ),
                   ),
                   // 삭제 아이콘 버튼
@@ -66,7 +70,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                   onTap: () {
                     // 아이템 클릭시
-                    print('$bucket : 클릭 됨');
+                    setState(() {
+                      bucket.isDone = !bucket.isDone;
+                    });
                   },
                 );
               },
