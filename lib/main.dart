@@ -78,8 +78,16 @@ class _HomePageState extends State<HomePage> {
 }
 
 /// 버킷 생성 페이지
-class CreatePage extends StatelessWidget {
+class CreatePage extends StatefulWidget {
   const CreatePage({Key? key}) : super(key: key);
+
+  @override
+  State<CreatePage> createState() => _CreatePageState();
+}
+
+class _CreatePageState extends State<CreatePage> {
+  // TextField의 값을 가져올 때 사용합니다.
+  TextEditingController textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +108,7 @@ class CreatePage extends StatelessWidget {
           children: [
             // 텍스트 입력창
             TextField(
+              controller: textController,
               autofocus: true,
               decoration: InputDecoration(
                 hintText: "하고 싶은 일을 입력하세요",
@@ -119,6 +128,8 @@ class CreatePage extends StatelessWidget {
                 ),
                 onPressed: () {
                   // 추가하기 버튼 클릭시
+                  String job = textController.text;
+                  print(job);
                 },
               ),
             ),
